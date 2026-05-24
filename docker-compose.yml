@@ -1,0 +1,15 @@
+services:
+  core:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: neostronghold-core
+    ports:
+      - "8123:8123"
+    volumes:
+      - ./config:/config
+      - ../app:/config/www/frontend
+      - ./homeassistant:/usr/src/homeassistant/homeassistant
+    environment:
+      - TZ=Africa/Johannesburg
+    restart: unless-stopped
